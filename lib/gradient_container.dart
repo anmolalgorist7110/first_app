@@ -1,38 +1,61 @@
 import 'package:flutter/material.dart';
 
+const startAlignment = Alignment.topLeft;
+const endAlignment = Alignment.bottomRight;
 
-const startAlignment = Alignment.topLeft ;
-const endAlignment = Alignment.bottomRight ;
+class GradientContainer extends StatelessWidget {
+  //constructor
+  const GradientContainer(this.color1, this.color2, {super.key});
 
-class GradientContainer extends StatelessWidget{
+  // constructor function
+  const GradientContainer.purple({super.key})
+      : color1 = Colors.deepPurple,
+        color2 = Colors.indigo;
 
- //constructor
- const GradientContainer( this.color1 , this.color2 , {super.key});
+  final Color color1;
+  final Color color2;
 
- // constructor function
- const GradientContainer.purple({super.key})
- : color1 = Colors.deepPurple,
-   color2 = Colors.indigo;
+  void rollDice (){
 
- final Color color1 ;
- final Color color2 ;
+  }
 
   @override
-  Widget build (BuildContext context){
-      return Container(
-          decoration:  BoxDecoration(
-            gradient: LinearGradient(
-              colors: [color1 , color2],
-                begin: startAlignment ,
-                end:  endAlignment,
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [color1, color2],
+          begin: startAlignment,
+          end: endAlignment,
+        ),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/dice-1.png',
+              width: 200,
             ),
-          ),
-          child:   Center(
-            child: Image.asset('assets/images/dice-1.png' , 
-            width: 200,
-            ), 
-          ),
-        );
+            const SizedBox(
+              height: 40,
+            ),
+            TextButton(
+            onPressed: rollDice,
+            style: TextButton.styleFrom(
+              // padding: const EdgeInsets.only(
+              //   top: 30 ,
+              // ),
+              foregroundColor: Colors.white ,
+             textStyle: const TextStyle(
+               fontSize: 28,
+            ),), 
+            child: const Text('Roll Dice'),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 
